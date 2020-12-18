@@ -19,13 +19,34 @@ tableData.forEach(d=>{
 })
 
 //Fill out drop downs
-//Get unique values function
+//Get unique values
 let citiesList = tableData.map(item => item.city).filter((value, index, self) => self.indexOf(value) === index);
 //console.log(citiesList);
 //Clean Dropdown in Form and fill it out
-d3.select("#city").html("");
+//d3.select("#city").html("");
 for(city of citiesList){
     d3.select("#city").append("option").text(city);
+}
+let statesList = tableData.map(item => item.state).filter((value, index, self) => self.indexOf(value) === index);
+//console.log(statesList);
+//Clean Dropdown in Form and fill it out
+//d3.select("#state").html("");
+for(state of statesList){
+    d3.select("#state").append("option").text(state);
+}
+let countriesList = tableData.map(item => item.country).filter((value, index, self) => self.indexOf(value) === index);
+//console.log(countriesList);
+//Clean Dropdown in Form and fill it out
+//d3.select("#country").html("");
+for(state of countriesList){
+    d3.select("#country").append("option").text(state);
+}
+let shapesList = tableData.map(item => item.shape).filter((value, index, self) => self.indexOf(value) === index);
+//console.log(shapesList);
+//Clean Dropdown in Form and fill it out
+//d3.select("#shape").html("");
+for(state of shapesList){
+    d3.select("#shape").append("option").text(state);
 }
 
 //Create Button Filtering Function
@@ -38,6 +59,7 @@ button.on("click", function(){
     console.log(`Date input: ${inputValDate.length}`);
     //Get City
     let inputCity = d3.select("#city").property("value");
+    console.log(`City input: ${inputCity}`);
     //Create the fiterData Array
     if(inputValDate.length > 0){
         console.log('Date filter applied')
