@@ -20,31 +20,27 @@ tableData.forEach(d=>{
 
 //Fill out drop downs
 //Get unique values
-let citiesList = tableData.map(item => item.city).filter((value, index, self) => self.indexOf(value) === index);
+let citiesList = tableData.map(item => item.city).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(citiesList);
 //Clean Dropdown in Form and fill it out
-//d3.select("#city").html("");
 for(city of citiesList){
     d3.select("#city").append("option").text(city);
 }
-let statesList = tableData.map(item => item.state).filter((value, index, self) => self.indexOf(value) === index);
+let statesList = tableData.map(item => item.state).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(statesList);
 //Clean Dropdown in Form and fill it out
-//d3.select("#state").html("");
 for(state of statesList){
     d3.select("#state").append("option").text(state);
 }
-let countriesList = tableData.map(item => item.country).filter((value, index, self) => self.indexOf(value) === index);
+let countriesList = tableData.map(item => item.country).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(countriesList);
 //Clean Dropdown in Form and fill it out
-//d3.select("#country").html("");
 for(state of countriesList){
     d3.select("#country").append("option").text(state);
 }
-let shapesList = tableData.map(item => item.shape).filter((value, index, self) => self.indexOf(value) === index);
+let shapesList = tableData.map(item => item.shape).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(shapesList);
 //Clean Dropdown in Form and fill it out
-//d3.select("#shape").html("");
 for(state of shapesList){
     d3.select("#shape").append("option").text(state);
 }
@@ -61,12 +57,14 @@ button.on("click", function(){
     let inputCity = d3.select("#city").property("value");
     console.log(`City input: ${inputCity}`);
     //Create the fiterData Array
+    let filterData = tableData
     if(inputValDate.length > 0){
         console.log('Date filter applied')
-        filterData = tableData.filter(x=>x.datetime===inputValDate && x.city===inputCity);
-    }else{
+        filterData = filterData.filter(x=>x.datetime===inputValDate);
+    }
+    if (inputCity != 'All'){
         console.log('City filter applied')
-        filterData = tableData.filter(x=>x.city===inputCity);
+        filterData = filterData.filter(x=>x.city===inputCity);
     }
     console.log(filterData);
     //Fill out HTML Table with filtered data set
