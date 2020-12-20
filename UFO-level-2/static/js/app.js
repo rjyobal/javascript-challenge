@@ -9,14 +9,22 @@ let tableData = data;
 //Select DOM objects
 let tbody = d3.select("tbody");
 let button = d3.select("#filter-btn");
+let clearBtn = d3.select("#clear-btn");
 
-//Fill out HTML Table with full data set
-tableData.forEach(d=>{
-    let row = tbody.append("tr");
-    for(x in d){
-        row.append("td").text(d[x]);
-    }
-})
+/**
+ * Show All Dataset Results - Fill outs the html table iwht full dataset
+ */
+function showAllResults(){
+    tableData.forEach(d=>{
+        let row = tbody.append("tr");
+        for(x in d){
+            row.append("td").text(d[x]);
+        }
+    })
+}
+
+//Call function to show all results
+showAllResults();
 
 //Fill out drop downs
 //Get unique values
@@ -97,4 +105,12 @@ button.on("click", function(){
             row.append("td").text(d[x]);
         }
     })
+})
+
+//Clear button
+clearBtn.on("click", function(){
+    //Clean the table
+    tbody.html("");
+    //Call function to show all results
+    showAllResults();
 })
