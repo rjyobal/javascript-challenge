@@ -22,25 +22,25 @@ tableData.forEach(d=>{
 //Get unique values
 let citiesList = tableData.map(item => item.city).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(citiesList);
-//Clean Dropdown in Form and fill it out
+//Fill out dropdown
 for(city of citiesList){
     d3.select("#city").append("option").text(city);
 }
 let statesList = tableData.map(item => item.state).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(statesList);
-//Clean Dropdown in Form and fill it out
+//Fill out dropdown
 for(state of statesList){
     d3.select("#state").append("option").text(state);
 }
 let countriesList = tableData.map(item => item.country).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(countriesList);
-//Clean Dropdown in Form and fill it out
+//Fill out dropdown
 for(state of countriesList){
     d3.select("#country").append("option").text(state);
 }
 let shapesList = tableData.map(item => item.shape).filter((value, index, self) => self.indexOf(value) === index).sort();
 //console.log(shapesList);
-//Clean Dropdown in Form and fill it out
+//Fill out dropdown
 for(state of shapesList){
     d3.select("#shape").append("option").text(state);
 }
@@ -57,7 +57,18 @@ button.on("click", function(){
     let inputCity = d3.select("#city").property("value");
     console.log(`City input: ${inputCity}`);
     //Create the fiterData Array
+    //Get State
+    let inputState = d3.select("#state").property("value");
+    console.log(`State input: ${inputState}`);
+    //Get Country
+    let inputCountry = d3.select("#country").property("value");
+    console.log(`Country input: ${inputCountry}`);
+    //Get Shape
+    let inputShape = d3.select("#shape").property("value");
+    console.log(`Shape input: ${inputShape}`);
+    //Create filterData default array
     let filterData = tableData
+    //Look for filters selected and apply to array
     if(inputValDate.length > 0){
         console.log('Date filter applied')
         filterData = filterData.filter(x=>x.datetime===inputValDate);
@@ -65,6 +76,18 @@ button.on("click", function(){
     if (inputCity != 'All'){
         console.log('City filter applied')
         filterData = filterData.filter(x=>x.city===inputCity);
+    }
+    if (inputState != 'All'){
+        console.log('State filter applied')
+        filterData = filterData.filter(x=>x.state===inputState);
+    }
+    if (inputCountry != 'All'){
+        console.log('Country filter applied')
+        filterData = filterData.filter(x=>x.country===inputCountry);
+    }
+    if (inputShape != 'All'){
+        console.log('Shape filter applied')
+        filterData = filterData.filter(x=>x.shape===inputShape);
     }
     console.log(filterData);
     //Fill out HTML Table with filtered data set
