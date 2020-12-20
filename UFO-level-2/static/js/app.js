@@ -10,6 +10,7 @@ let tableData = data;
 let tbody = d3.select("tbody");
 let button = d3.select("#filter-btn");
 let clearBtn = d3.select("#clear-btn");
+let recordCnt = d3.select("#record-count");
 
 /**
  * Show All Dataset Results - Fill outs the html table iwht full dataset
@@ -21,6 +22,7 @@ function showAllResults(){
             row.append("td").text(d[x]);
         }
     })
+    recordCnt.text(`Records found: ${tableData.length}`);
 }
 
 //Call function to show all results
@@ -105,6 +107,8 @@ button.on("click", function(){
             row.append("td").text(d[x]);
         }
     })
+    //Count Records found
+    recordCnt.text(`Records found: ${filterData.length}`);
 })
 
 //Clear button
